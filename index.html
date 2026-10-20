@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ikatech — Proyectos y descargas</title>
+<meta name="description" content="Descarga los proyectos de Ikatech. Cada descarga incluye su licencia y términos.">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   [EDITA AQUÍ] — PANEL DE ESTILO
+   Cambia estos valores y toda la página cambia de aspecto.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Colores ── */
+  --primario:         #6366f1;
+  --primario-hover:   #4f46e5;
+  --primario-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --primario-texto:   #ffffff;
+
+  --texto:            #0f172a;
+  --texto-medio:      #475569;
+  --texto-suave:      #94a3b8;
+
+  --fondo:            #fafafa;
+  --fondo-tarjeta:    #ffffff;
+  --fondo-suave:      #f1f5f9;
+  --borde:            #e2e8f0;
+
+  --sombra:           0 1px 3px rgba(15,23,42,.04), 0 1px 2px rgba(15,23,42,.03);
+  --sombra-hover:     0 12px 32px rgba(99,102,241,.15), 0 4px 12px rgba(15,23,42,.05);
+  --overlay:          rgba(15,23,42,.6);
+
+  /* ── Badges ── */
+  --badge-version-bg:   #eff6ff;
+  --badge-version-txt:  #1d4ed8;
+  --badge-license-bg:   #f0fdf4;
+  --badge-license-txt:  #15803d;
+
+  /* ── Tipografía ── */
+  --fuente:           system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --tam-h1:           2.4rem;
+  --tam-h2:           1.35rem;
+  --tam-h3:           1.05rem;
+
+  /* ── Forma ── */
+  --radio:            14px;
+  --radio-boton:      10px;
+  --ancho-max:        760px;
+}
+/* ══════════════════ FIN DEL PANEL DE ESTILO ══════════════════ */
+
+* { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--fuente);
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 4rem 1.25rem;
+  line-height: 1.65;
+  color: var(--texto);
+  background-color: var(--fondo);
+  background-image:
+    radial-gradient(at 0% 0%,   rgba(99,102,241,.10) 0px, transparent 45%),
+    radial-gradient(at 100% 0%, rgba(139,92,246,.07) 0px, transparent 45%),
+    radial-gradient(at 50% 100%, rgba(99,102,241,.05) 0px, transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+header.brand { margin-bottom: 3rem; }
+header.brand h1 {
+  margin: 0;
+  font-size: var(--tam-h1);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+}
+header.brand .accent {
+  display: inline-block;
+  width: 44px; height: 4px;
+  background: var(--primario-gradient);
+  border-radius: 2px;
+  margin: 1rem 0 1.25rem;
+}
+header.brand .tagline {
+  color: var(--texto-suave);
+  margin: 0 0 1rem;
+  font-size: .95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+header.brand .intro {
+  color: var(--texto-medio);
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1.05rem;
+}
+
+.project {
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--sombra);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.project:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-hover);
+  border-color: rgba(99,102,241,.35);
+}
+.project h2 {
+  margin: 0 0 .75rem;
+  font-size: var(--tam-h2);
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.project .desc {
+  color: var(--texto-medio);
+  margin: 0 0 1.1rem;
+  font-size: .95rem;
+}
+.project .badges {
+  display: flex; gap: .5rem; flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: .22rem .7rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.badge-version { background: var(--badge-version-bg); color: var(--badge-version-txt); }
+.badge-license { background: var(--badge-license-bg); color: var(--badge-license-txt); }
+
+.btn {
+  font-family: inherit;
+  font-size: .95rem;
+  font-weight: 500;
+  padding: .7rem 1.4rem;
+  border-radius: var(--radio-boton);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn svg { flex-shrink: 0; }
+
+.btn-primario {
+  background: var(--primario-gradient);
+  color: var(--primario-texto);
+  box-shadow: 0 2px 8px rgba(99,102,241,.3);
+}
+.btn-primario:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(99,102,241,.4);
+}
+.btn-primario:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.btn-secundario {
+  background: var(--fondo-tarjeta);
+  border-color: var(--borde);
+  color: var(--texto);
+}
+.btn-secundario:hover { background: var(--fondo-suave); }
+
+.overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: var(--overlay);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.overlay.abierto { display: flex; }
+.modal {
+  background: var(--fondo-tarjeta);
+  border-radius: var(--radio);
+  width: 100%;
+  max-width: 620px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 60px rgba(15,23,42,.25);
+}
+.overlay.abierto .modal {
+  animation: modalIn .22s cubic-bezier(.16,1,.3,1);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(.96) translateY(8px); }
+  to   { opacity: 1; transform: scale(1)  translateY(0); }
+}
+.modal header {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--borde);
+}
+.modal header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.modal .cuerpo {
+  padding: 1.75rem;
+  overflow-y: auto;
+  font-size: .93rem;
+  color: var(--texto-medio);
+}
+.modal .cuerpo h3 {
+  margin: 0 0 .25rem;
+  font-size: var(--tam-h3);
+  color: var(--texto);
+  font-weight: 600;
+}
+.modal .cuerpo .fecha {
+  color: var(--texto-suave);
+  font-size: .82rem;
+  margin: 0 0 1.25rem;
+}
+.modal .cuerpo h4 {
+  margin: 1.4rem 0 .4rem;
+  font-size: .93rem;
+  color: var(--texto);
+  font-weight: 600;
+}
+.modal .cuerpo p { margin: 0 0 .75rem; }
+.modal footer {
+  padding: 1.1rem 1.75rem;
+  border-top: 1px solid var(--borde);
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  background: var(--fondo-suave);
+  border-bottom-left-radius: var(--radio);
+  border-bottom-right-radius: var(--radio);
+}
+.modal footer label {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: .88rem;
+  cursor: pointer;
+  color: var(--texto-medio);
+  user-select: none;
+}
+.modal footer input[type=checkbox] {
+  width: 1.1rem; height: 1.1rem;
+  cursor: pointer;
+  accent-color: var(--primario);
+}
+
+footer.pie {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--borde);
+  font-size: .88rem;
+  color: var(--texto-suave);
+  text-align: center;
+}
+footer.pie a {
+  color: var(--primario);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .15s ease;
+}
+footer.pie a:hover { color: var(--primario-hover); text-decoration: underline; }
+footer.pie .contacto {
+  margin: 0 0 1rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 520px) {
+  body { padding: 2.5rem 1rem; }
+  :root { --tam-h1: 1.9rem; --tam-h2: 1.2rem; }
+  .project { padding: 1.35rem; }
+  .modal .cuerpo, .modal footer, .modal header { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     [EDITA AQUÍ] — CABECERA
+     ═══════════════════════════════════════════════════════════ -->
+<header class="brand">
+  <p class="tagline">Proyectos y descargas</p>
+  <h1>Ikatech</h1>
+  <span class="accent"></span>
+  <p class="intro">
+    Aquí publico mis proyectos abiertos. Cada descarga incluye su propia licencia y términos;
+    solo después de aceptarlos comienza la descarga.
+  </p>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════════════════
+     [EDITA AQUÍ] — TARJETA DE PROYECTO
+     Para añadir más: copia este bloque entero.
+     ═══════════════════════════════════════════════════════════ -->
+<article class="project">
+  <h2>Proyecto de ejemplo</h2>
+  <p class="desc">
+    Reemplaza esta tarjeta con tu primer proyecto real. La descarga está
+    conectada a un archivo de prueba para que puedas ver el flujo completo.
+  </p>
+  <div class="badges">
+    <span class="badge badge-version">v0.1</span>
+    <span class="badge badge-license">MIT</span>
+  </div>
+  <button class="btn btn-primario"
+          data-url="https://raw.githubusercontent.com/git/git/master/README.md"
+          data-terms="terminos-ejemplo"
+          data-project="proyecto-ejemplo"
+          data-version="0.1">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Descargar
+  </button>
+</article>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MODAL ÚNICO (no tocar)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+  <div class="modal">
+    <header><h2 id="modalTitulo">Licencia y términos</h2></header>
+    <div class="cuerpo" id="modalCuerpo"></div>
+    <footer>
+      <label><input type="checkbox" id="checkAcepto"> He leído y acepto estos términos</label>
+      <button class="btn btn-secundario" id="btnCancelar">Cancelar</button>
+      <button class="btn btn-primario" id="btnConfirmar" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Acepto y descargo
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     [EDITA AQUÍ] — TÉRMINOS DEL PROYECTO
+     El id debe coincidir con el data-terms del botón.
+     ═══════════════════════════════════════════════════════════ -->
+<template id="terminos-ejemplo">
+  <h3>Licencia MIT</h3>
+  <p>Copyright (c) 2026 Ikatech</p>
+  <h4>1. Concesión</h4>
+  <p>Por la presente se concede permiso, libre de cargos, a cualquier persona que obtenga una
+     copia de este software y de los archivos de documentación asociados, para utilizar el
+     Software sin restricción, incluyendo sin limitación los derechos de usar, copiar, modificar,
+     fusionar, publicar, distribuir, sublicenciar y/o vender copias del Software.</p>
+  <h4>2. Condiciones</h4>
+  <p>El aviso de copyright anterior y este aviso de permiso se incluirán en todas las copias o
+     partes sustanciales del Software.</p>
+  <h4>3. Exención de garantía</h4>
+  <p>EL SOFTWARE SE PROPORCIONA «TAL CUAL», SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O IMPLÍCITA.</p>
+  <h4>4. Registro de descargas</h4>
+  <p>Al aceptar, se registra de forma anónima el identificador del proyecto, la versión
+     descargada y la fecha. No se guarda tu IP ni datos que permitan identificarte.</p>
+</template>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FORMULARIO OCULTO + IFRAME (registro)
+     ═══════════════════════════════════════════════════════════ -->
+<form id="formLog"
+      method="POST"
+      target="logFrame"
+      action="https://script.google.com/macros/s/AKfycbyqBkXXrRnE34vyIcMsHzzhrFAGwFyBrkLOdWZ76HzLQEsJKXTeHXw_oAkMJGLKJEiAsQ/exec"
+      style="display:none;">
+  <input type="hidden" name="project" id="logProject">
+  <input type="hidden" name="version" id="logVersion">
+</form>
+<iframe name="logFrame" style="display:none;" title="log"></iframe>
+
+<!-- ═══════════════════════════════════════════════════════════
+     [EDITA AQUÍ] — PIE DE PÁGINA
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="pie">
+  <p class="contacto">
+    <a href="https://instagram.com/ikatech.libertad.uy" target="_blank" rel="noopener">@ikatech.libertad.uy</a>
+    <a href="mailto:ikatech.libertad.uy@gmail.com">ikatech.libertad.uy@gmail.com</a>
+  </p>
+  <p style="margin:0;">© <span id="anio"></span> Ikatech · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  /* ══════════════════ LÓGICA (no tocar) ══════════════════ */
+
+  document.getElementById('anio').textContent = new Date().getFullYear();
+
+  const modal        = document.getElementById('modal');
+  const modalCuerpo  = document.getElementById('modalCuerpo');
+  const check        = document.getElementById('checkAcepto');
+  const btnConfirmar = document.getElementById('btnConfirmar');
+  const btnCancelar  = document.getElementById('btnCancelar');
+  const formLog      = document.getElementById('formLog');
+  const logProject   = document.getElementById('logProject');
+  const logVersion   = document.getElementById('logVersion');
+
+  let urlPendiente   = null;
+  let proyectoActual = null;
+  let versionActual  = null;
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-terms]');
+    if (!btn) return;
+
+    const plantilla = document.getElementById(btn.dataset.terms);
+    if (!plantilla) { console.error('Falta plantilla:', btn.dataset.terms); return; }
+
+    urlPendiente   = btn.dataset.url;
+    proyectoActual = btn.dataset.project;
+    versionActual  = btn.dataset.version;
+
+    modalCuerpo.replaceChildren(plantilla.content.cloneNode(true));
+
+    const meta = document.createElement('p');
+    meta.className = 'fecha';
+    const fecha = new Date().toLocaleDateString('es-UY', { year: 'numeric', month: 'long', day: 'numeric' });
+    meta.textContent = `Versión ${versionActual} · ${fecha}`;
+    modalCuerpo.prepend(meta);
+
+    check.checked = false;
+    btnConfirmar.disabled = true;
+    modal.classList.add('abierto');
+    modalCuerpo.scrollTop = 0;
+    btnCancelar.focus();
+  });
+
+  check.addEventListener('change', () => {
+    btnConfirmar.disabled = !check.checked;
+  });
+
+  btnConfirmar.addEventListener('click', () => {
+    if (!urlPendiente) return;
+    btnConfirmar.disabled = true;
+
+    logProject.value = proyectoActual;
+    logVersion.value = versionActual;
+    try { formLog.submit(); } catch (e) { console.warn('No se pudo registrar:', e); }
+
+    const a = document.createElement('a');
+    a.href = urlPendiente;
+    a.download = '';
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    cerrar();
+  });
+
+  function cerrar() {
+    modal.classList.remove('abierto');
+    urlPendiente = null;
+    proyectoActual = null;
+    versionActual = null;
+  }
+
+  btnCancelar.addEventListener('click', cerrar);
+  modal.addEventListener('click', e => { if (e.target === modal) cerrar(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
+</script>
+
+</body>
+</html>
